@@ -1,0 +1,75 @@
+@startuml
+class Snake {
+  -static Snake theSnake
+  -Sorter sorter
+  +static Snake getTheSnake()
+  +void setSorter(Sorter sorter)
+  +String matrixUp(Matrix matrix)
+  +String[] parsePlan(String plan)
+  +void execute(String step)
+}
+
+class SelectSorter {
+  -int[][] a
+  +void load(int[][] elements)
+  +void sort()
+  +String getPlan()
+  +void swap(int i, int j, int x, int y)
+}
+
+class QuickSorter {
+  -int[][] a
+  +void load(int[][] elements)
+  +void sort()
+  +String getPlan()
+  +void swap(int i, int j, int x, int y)
+  +void QuickSorter(int left, int right)
+}
+
+class Monster {
+  -int r, g, b
+  -Monster[][] monsArray
+  -Position position
+  +void setPosition(Position position)
+  +Position getPosition()
+  +void swapPosition(Monster another)
+  +int getValue()
+  +Monster getArrayEle(int i, int j)
+  +Monster getMonsterByRank(int rank)
+  +int rank()
+}
+
+class Matrix {
+  -int n, m
+  -Position[][] positions
+  +void put(Linable linable, int i,int j)
+  +Linable get(int i, int j)
+  +Linable[][] toMatrix()
+  +void shuffle()
+}
+
+interface Sorter {
+  +void load(int[][] elements)
+  +void sort()
+  +String getPlan()
+}
+
+interface Linable {
+  +void setPosition(Position position)
+  +Position getPosition()
+  +int getValue()
+}
+
+class Position {
+  -Linable linable
+  +void setLinable(Linable linable)
+}
+
+Snake --> Sorter
+Snake --> Matrix
+SelectSorter ..|> Sorter
+QuickSorter ..|> Sorter
+Monster ..|> Linable
+Matrix --> Position
+Position --> Linable
+@enduml

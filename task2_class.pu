@@ -1,0 +1,73 @@
+@startuml
+class Snake {
+  -static Snake theSnake
+  -Sorter sorter
+  +static Snake getTheSnake()
+  +void setSorter(Sorter sorter)
+  +String lineUp(Line line)
+  +String[] parsePlan(String plan)
+  +void execute(String step)
+}
+
+class SelectSorter {
+  -int[] a
+  +void load(int[] elements)
+  +void swap(int i, int j)
+  +void sort()
+  +String getPlan()
+}
+
+class QuickSorter {
+  -int[] a
+  +void load(int[] elements)
+  +void sort()
+  +String getPlan()
+  +void swap(int i, int j)
+  +void quickSort(int left, int right)
+}
+
+class Monster {
+  -int r, g, b
+  -Position position
+  +void setPosition(Position position)
+  +Position getPosition()
+  +void swapPosition(Monster another)
+  +int getValue()
+  +Monster getArrayEle(int index)
+  +Monster getMonsterByRank(int rank)
+  +int rank()
+}
+
+class Line {
+  -Position[] positions
+  +void put(Linable linable, int i)
+  +Linable get(int i)
+  +Linable[] toArray()
+  +void shuffle()
+}
+
+interface Sorter {
+  +void load(int[] elements)
+  +void sort()
+  +String getPlan()
+}
+
+interface Linable {
+  +void setPosition(Position position)
+  +Position getPosition()
+  +int getValue()
+}
+
+class Position {
+  -Linable linable
+  +void setLinable(Linable linable)
+}
+
+Snake --> Sorter
+Snake --> Line
+SelectSorter ..|> Sorter
+QuickSorter ..|> Sorter
+Monster ..|> Linable
+Line --> Position
+Position --> Linable
+@enduml

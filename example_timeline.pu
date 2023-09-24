@@ -1,0 +1,34 @@
+@startuml
+participant line
+participant Gourd
+participant theGeezer
+participant sorter
+participant writer
+
+activate line
+
+line -> Gourd : put(Gourd.ONE, 6)
+line -> Gourd : put(Gourd.TWO, 3)
+line -> Gourd : put(Gourd.THREE, 1)
+line -> Gourd : put(Gourd.FOUR, 5)
+line -> Gourd : put(Gourd.FIVE, 2)
+line -> Gourd : put(Gourd.SIX, 4)
+line -> Gourd : put(Gourd.SEVEN, 0)
+
+activate theGeezer
+activate sorter
+
+theGeezer -> sorter : setSorter(sorter)
+
+theGeezer -> line : lineUp(line)
+
+activate writer
+writer -> writer : write(log)
+writer -> writer : flush()
+writer -> writer : close()
+
+deactivate writer
+deactivate sorter
+deactivate theGeezer
+deactivate line
+@enduml
